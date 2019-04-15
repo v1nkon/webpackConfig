@@ -1,0 +1,14 @@
+div{
+  padding: 10px;
+  background: red;
+}
+.img{
+  /* background-image: url(./images/img1.jpeg); */
+  width: 100px;
+  height: 100px;
+}
+ul{
+  display: flex;
+  transform: rotate(50deg);
+  animation-name: "xxx"
+}
