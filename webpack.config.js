@@ -1,4 +1,5 @@
 var path = require('path');
+const resolve = path.resolve
 const uglify = require('uglifyjs-webpack-plugin')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const extractTextPlugin = require('extract-text-webpack-plugin')
@@ -9,10 +10,12 @@ module.exports = {
     main: './src/index.js',
     // main2: './src/test2.js'
   },
+  devtool: 'sourcemap',
+  // devtool: "cheap-module-eval-source-map",
   output: {
     path: path.join(__dirname, 'build'),
     filename: '[name].js',//'app.bundle.js'
-    publicPath: '/build/',
+    // publicPath: '/build/',
   },
   module:{
     rules:[
@@ -23,15 +26,15 @@ module.exports = {
       {
         test: /\.js$/,
         include: path.join(__dirname, 'src'),
-        // use:{
-        //   loader: 'babel-loader'
-        // }
-        loader: 'babel-loader',
-        options:{
-          presets:[
-            'react', 'es2015',
-          ]
+        use:{
+          loader: 'babel-loader'
         }
+        // loader: 'babel-loader',
+        // options:{
+        //   presets:[
+        //     'react', 'es2015',
+        //   ]
+        // }
       },
       {
         test: /\.css$/,
@@ -95,11 +98,31 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.resolve(__dirname, './build'),
+    contentBase: path.resolve(__dirname, './src'),
     host: 'localhost',
-    compress: true,
-    port :8888
+    // compress: true,
+    port :8888,
+    open:true
+    // proxy: {  //跨域配置
+    //     '/api': {
+    //     target: 'http://localhost:3000',
+    //     pathRewrite: {
+    //       '^/api' : ''
+    //     }
+    //   }
+    // }
 
+  },
+  resolve: {
+    extensions: ['.js', '.json'],
+    // 配置项目文件别名
+    alias: {
+      '@': resolve('src'),
+      assets: resolve('src/common/assets'),
+      utils: resolve('src/common/utils'),
+      layout: resolve('src/layout'),
+      build: resolve('build')
+    }
   },
   plugins: [
     // new uglify(),

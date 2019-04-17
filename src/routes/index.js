@@ -1,9 +1,8 @@
 // routes/index.js 
 import React from 'react'; 
 import { Switch, Link, HashRouter , Route, Router } from 'react-router-dom'
-// import "react-router-dom"
-// import Home from "../views/Home";
-// import Detail from "../views/Detail";
+
+import Home from '@/views/Home'
 
 const Main = () => (
   <main>
@@ -90,31 +89,7 @@ const Schedule = () => (
   </div>
 )
 
-const Home = () => (
-  <div>
-    <h1>Welcome to the Tornadoes Website!</h1>
-  </div>
-)
 
-const Header = () => (
-  <header>
-    <nav>
-      <ul>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/roster'>Roster</Link></li>
-        <li><Link to='/schedule'>Schedule</Link></li>
-      </ul>
-    </nav>
-  </header>
-)
 
-const App = () => (
-  <HashRouter>
-    <div>
-      <Header />
-      <Main />
-    </div>
-  </HashRouter>
-)
 
-export default App;
+export default Main;
